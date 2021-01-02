@@ -1,9 +1,11 @@
-// Load all the controllers within this directory and all subdirectories. 
+// Load all the controllers within this directory and all subdirectories.
 // Controller files must be named *_controller.js.
 
 import { Application } from "stimulus"
+import NestedForm from "stimulus-rails-nested-form"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
 const application = Application.start()
 const context = require.context("controllers", true, /_controller\.js$/)
+application.register("nested-form", NestedForm)
 application.load(definitionsFromContext(context))

@@ -7,10 +7,14 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new question_params
-    render turbo_stream: [
-      turbo_stream.update(:question_form, partial: 'questions/select_type' ),
-      turbo_stream.append(:form_questions, partial: "question_types/question_type"),
-    ]
+    if @question.valid?
+      render turbo_stream: [
+        turbo_stream.update(:question_form, partial: 'questions/select_type' ),
+        turbo_stream.append(:form_questions, partial: "question_types/question_type"),
+      ]
+    else
+      render turbo_stream: turbo_stream.update(:question_form, partial: "questions/new")
+    end
   end
 
   protected
@@ -20,7 +24,9 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:question_type, :form_id, :label)
+    params.require(:question).permit(:question_type, :form_id, :label,
+      answers_attributes: [:label, :_destroy]
+    )
   end
 
 end

@@ -1,6 +1,6 @@
 <div class="mt-4">
-  <div class="md:grid md:grid-cols-2 md:gap-6 bg-gray-100 p-4">
-    <div class="md:col-span-1 border-r-dashed">
+  <div class="md:grid md:grid-cols-2 md:gap-6 bg-gray-100 p-4 pb-8">
+    <div class="md:col-span-1">
       <%= form_with model: @form do |f| %>
         <div class="mb-3">
           <%= f.label :name, "Name", class: "block text-sm font-medium text-gray-700" %>
@@ -14,9 +14,15 @@
             <%= f.label :published, "Published", class: "block text-sm font-medium text-gray-700" %>
           </div>
         </div>
+        <div class="ml-3 text-xs">
+          Once published, this form will be publicly visible and other users can fill it out.  The form will also no longer be editable.
+        </div>
         <div class="mt-3">
           <h5 class="text-md">Questions</h5>
           <ul id="form_questions" class="list-decimal"> </ul>
+        </div>
+        <div class="mt-4">
+          <%= f.submit "Submit", class: "w-full mt-6 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
         </div>
       <% end %>
     </div>
