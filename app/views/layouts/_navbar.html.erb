@@ -23,13 +23,13 @@
             <div class="flex space-x-4">
               <%
                 navItems = [
-                  { text: "Forms", controller: "forms"},
-                  { text: "Responses", controller: "responses" },
+                  { text: "Forms", controller: "forms", url: forms_path },
+                  { text: "Responses", controller: "responses", url: "#" },
                 ]
                 navItems.each do |navItem|
                   cssClasses = controller_name == navItem[:controller] ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"
               %>
-                <a href="#" class="<%= cssClasses %> px-3 py-2 rounded-md text-sm font-medium"><%= navItem[:text] %></a>
+                <a href="<%= navItem[:url] %>" class="<%= cssClasses %> px-3 py-2 rounded-md text-sm font-medium"><%= navItem[:text] %></a>
               <% end %>
             </div>
           <% end %>

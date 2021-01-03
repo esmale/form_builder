@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
     if @question.valid?
       render turbo_stream: [
         turbo_stream.update(:question_form, partial: 'questions/select_type' ),
-        turbo_stream.append(:form_questions, partial: "question_types/question_type"),
+        turbo_stream.append(:form_questions, partial: "questions/question"),
       ]
     else
       render turbo_stream: turbo_stream.update(:question_form, partial: "questions/new")

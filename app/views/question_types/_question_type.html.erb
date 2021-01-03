@@ -1,6 +1,0 @@
-<% id = @question.id || Time.now.to_i %>
-<li class="ml-4 mt-4">
-  <input type="hidden" name="form[questions_attributes][<%= id %>][question_type]" value="<%= @question.question_type %>" />
-  <input type="hidden" name="form[questions_attributes][<%= id %>][label]" value="<%= @question.label %>" />
-  <%= render "question_types/#{@question.question_type}", id: id %>
-</li>

@@ -1,0 +1,24 @@
+<%
+  # This partial might be invoked either directly in a controller with
+  # an @ variable, or by another view with a local variable assignment
+%>
+<% questionObject = @question || question %>
+<% id = questionObject.id || Time.now.to_i %>
+<li class="ml-4 mt-4">
+  <% if questionObject.id.present? %>
+    <input type="hidden" name="form[questions_attributes][<%= id %>][id]" value="<%= questionObject.id %>" />
+  <% end %>
+  <input type="hidden" name="form[questions_attributes][<%= id %>][question_type]" value="<%= questionObject.question_type %>" />
+  <input type="hidden" name="form[questions_attributes][<%= id %>][label]" value="<%= questionObject.label %>" />
+  <% if QuestionType.has_options?(questionObject) %>
+    <% questionObject.answers.each_with_index do |answer, index| %>
+      <% if answer.id.present? %>
+        <input type="hidden" name="form[questions_attributes][<%= id %>][answers_attributes][<%= answer.id %>][id]" value="<%= answer.id %>" />
+      <% end %>
+
+      <% answerID = answer.id || index %>
+      <input type="hidden" name="form[questions_attributes][<%= id %>][answers_attributes][<%= answerID %>][label]" value="<%= answer.label %>" />
+    <% end %>
+  <% end %>
+  <%= render "question_types/#{questionObject.question_type}", id: id, question: questionObject %>
+</li>

@@ -18,12 +18,12 @@ class FormsController < ApplicationController
   end
 
   def edit
-    @form = current_user.forms.find param[:id]
+    @form = current_user.forms.find params[:id]
     redirect_if_published
   end
 
   def update
-    @form = current_user.forms.find param[:id]
+    @form = current_user.forms.find params[:id]
     redirect_if_published
     if @form.update(form_params)
       redirect_to forms_path, notice: "Form updated"
@@ -35,7 +35,11 @@ class FormsController < ApplicationController
   protected
 
   def form_params
-    params.require(:form).permit(:name, :published)
+    params.require(:form).permit(:name, :published,
+      questions_attributes: [:id, :question_type, :label,
+        answers_attributes: [:id, :label],
+      ]
+    )
   end
 
   def redirect_if_published
