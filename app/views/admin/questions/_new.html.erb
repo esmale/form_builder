@@ -1,1 +1,30 @@
-<%= render 'form' %>
+<%= form_with model: [:admin, @question], url: new_admin_question_path, method: :get do |f| %>
+  <%= f.hidden_field :form_id %>
+  <div class="shadow sm:rounded-md sm:overflow-hidden mb-4">
+    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+      <h4 class="text-lg">New Question</h4>
+      <div class="grid grid-cols-3 gap-6">
+        <div class="col-span-2">
+          <div class="col-span-6 sm:col-span-3">
+            <label for="question_type" class="block text-sm font-medium text-gray-700">Question Type</label>
+            <select id="question_type" name="question[question_type]" required class="mt-1 block w-full py-2 px-3 border border-gray-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              <option></option>
+              <% QuestionType::TYPES.each do |type| %>
+                <option value="<%= type[:value] %>"><%= type[:name] %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+        <div class="col-span-1">
+          <input type="submit" value="Update" class="w-full mt-6 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"/>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="shadow sm:rounded-md sm:overflow-hidden">
+  <div id="question_form" class="px-4 py-5 bg-white space-y-6 sm:p-6">
+    <%= render 'admin/questions/select_type' %>
+  </div>
+</div>

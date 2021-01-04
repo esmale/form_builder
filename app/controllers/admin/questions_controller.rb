@@ -2,7 +2,11 @@ class Admin::QuestionsController < ApplicationController
 
   def new
     @question = Question.new new_question_params
-    render turbo_stream: turbo_stream.update(:question_form, partial: 'admin/questions/new' )
+    if @question.question_type.present?
+      render turbo_stream: turbo_stream.update(:question_form, partial: 'admin/questions/question_form' )
+    else
+      render turbo_stream: turbo_stream.update(:question_panel, partial: 'admin/questions/new' )
+    end
   end
 
   def create
@@ -14,6 +18,22 @@ class Admin::QuestionsController < ApplicationController
       ]
     else
       render turbo_stream: turbo_stream.update(:question_form, partial: 'admin/questions/new')
+    end
+  end
+
+  def edit
+    @question = Question.find params[:id]
+    render turbo_stream: turbo_stream.update(:question_panel, partial: 'admin/questions/edit' )
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    @question.assign_attributes question_params
+    if @question.valid?
+      target = "question-#{@question.id}".to_sym
+      render turbo_stream: turbo_stream.replace(target, partial: 'admin/questions/question' )
+    else
+      render turbo_stream: turbo_stream.update(:question_panel, partial: 'admin/questions/edit' )
     end
   end
 

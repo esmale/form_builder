@@ -4,7 +4,14 @@
 %>
 <% questionObject = @question || question %>
 <% id = questionObject.id || Time.now.to_i %>
-<li class="ml-4 mt-4">
+<li id="question-<%= id %>" class="ml-4 mt-4">
+  <% if questionObject.id.present? %>
+    <div class="float-right">
+      <%= link_to "edit", edit_admin_question_path(questionObject), class: "mr-4" %>
+      <%= link_to "remove", admin_question_path(questionObject), data: { method: :delete } %>
+    </div>
+  <% end %>
+
   <% if questionObject.id.present? %>
     <input type="hidden" name="form[questions_attributes][<%= id %>][id]" value="<%= questionObject.id %>" />
   <% end %>
@@ -20,5 +27,5 @@
       <input type="hidden" name="form[questions_attributes][<%= id %>][answers_attributes][<%= answerID %>][label]" value="<%= answer.label %>" />
     <% end %>
   <% end %>
-  <%= render "question_types/#{questionObject.question_type}", id: id, question: questionObject %>
+  <%= render "admin/question_types/#{questionObject.question_type}", id: id, question: questionObject %>
 </li>

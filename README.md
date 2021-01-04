@@ -4,8 +4,6 @@
 
 * Ability to remove a question
 
-* Ability to edit a question(?) (Or just settle for remove & new?)
-
 * Allow user to fill out form for real, and save answers
 
 * Ensure user can only see form if it's been published

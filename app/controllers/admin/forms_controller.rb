@@ -11,7 +11,7 @@ class Admin::FormsController < ApplicationController
   def create
     @form = current_user.forms.build form_params
     if @form.save
-      redirect_to forms_path, notice: "Form created"
+      redirect_to admin_forms_path, notice: "Form created"
     else
       render :new
     end
@@ -26,7 +26,7 @@ class Admin::FormsController < ApplicationController
     @form = current_user.forms.find params[:id]
     redirect_if_published
     if @form.update(form_params)
-      redirect_to forms_path, notice: "Form updated"
+      redirect_to admin_forms_path, notice: "Form updated"
     else
       render :edit
     end
