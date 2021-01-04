@@ -1,6 +1,6 @@
 <div><%= @question.question_type.titleize %> Question</div>
 
-<%= form_with model: @question, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+<%= form_with model: [:admin, @question], data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
   <%= f.hidden_field :form_id %>
   <%= f.hidden_field :question_type %>
 

@@ -1,4 +1,4 @@
-class FormsController < ApplicationController
+class Admin::FormsController < ApplicationController
 
   def index
     @forms = current_user.forms.order("name ASC")

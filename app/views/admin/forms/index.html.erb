@@ -1,6 +1,6 @@
 <div class="container mx-auto mt-4">
   <div class="float-right">
-    <%= link_to "New Form", new_form_path, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    <%= link_to "New Form", new_admin_form_path, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   </div>
   <h4 class="text-xl">Forms</h4>
 
@@ -20,7 +20,7 @@
             <tr>
               <td class="px-6 py-4 whitespace-nowrap"><%= form.name %></td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <%= link_to 'Edit', edit_form_path(form), class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+                <%= link_to 'Edit', edit_admin_form_path(form), class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
               </td>
               <td class="px-6 py-4 whitespace-nowrap"></td>
             </tr>

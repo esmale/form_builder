@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :forms
-  resources :questions
-  
+  namespace :admin do
+    resources :forms
+    resources :questions
+  end
+
   devise_for :users
-  root to: "forms#index"
+  root to: "admin/forms#index"
 end

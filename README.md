@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# TODO
 
-Things you may want to cover:
+* Ability to remove a question
 
-* Ruby version
+* Ability to edit a question(?) (Or just settle for remove & new?)
 
-* System dependencies
+* Allow user to fill out form for real, and save answers
 
-* Configuration
+* Ensure user can only see form if it's been published
 
-* Database creation
+* Allow form creator to see submitted form Responses
 
-* Database initialization
+* Ensure form not editable once published
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Refactor `question_type` field to just `type` to take advantage of STI(?)

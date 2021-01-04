@@ -1,19 +1,19 @@
-class QuestionsController < ApplicationController
+class Admin::QuestionsController < ApplicationController
 
   def new
     @question = Question.new new_question_params
-    render turbo_stream: turbo_stream.update(:question_form, partial: 'questions/new' )
+    render turbo_stream: turbo_stream.update(:question_form, partial: 'admin/questions/new' )
   end
 
   def create
     @question = Question.new question_params
     if @question.valid?
       render turbo_stream: [
-        turbo_stream.update(:question_form, partial: 'questions/select_type' ),
-        turbo_stream.append(:form_questions, partial: "questions/question"),
+        turbo_stream.update(:question_form, partial: 'admin/questions/select_type' ),
+        turbo_stream.append(:form_questions, partial: 'admin/questions/question'),
       ]
     else
-      render turbo_stream: turbo_stream.update(:question_form, partial: "questions/new")
+      render turbo_stream: turbo_stream.update(:question_form, partial: 'admin/questions/new')
     end
   end
 
