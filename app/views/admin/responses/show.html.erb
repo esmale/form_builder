@@ -1,0 +1,19 @@
+<div class="container mx-auto mt-4">
+  <h4 class="text-xl"><%= @form.name %></h4>
+  <h6 class="text-md">Response from: <%= @user_form.user.name.full %></h6>
+
+  <ol class="list-decimal">
+    <% @form.questions.order("created_at ASC").each do |question| %>
+      <li class="ml-4 mt-4">
+        <div class="font-black"><%= question.label %></div>
+
+        <%
+          form_answer = @user_form.form_answers.where(question_id: question.id).first
+          answer = form_answer.answer_id.present? ? question.answers.find(form_answer.answer_id).label : form_answer.answer
+        %>
+
+        <div class="italic"><%= answer %> </div>
+      </li>
+    <% end %>
+  </ol>
+</div>

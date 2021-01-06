@@ -1,0 +1,11 @@
+<div class="container mx-auto mt-4">
+  <h4 class="text-xl"><%= @form.name %></h4>
+
+  <%= form_with model: [@form, @user_form] do |f| %>
+    <ol class="list-decimal">
+      <%= render @questions %>
+    </ol>
+
+    <%= f.submit "Submit", class: "mt-6 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  <% end %>
+</div>

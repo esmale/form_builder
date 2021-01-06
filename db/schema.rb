@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_171714) do
+ActiveRecord::Schema.define(version: 2021_01_06_173008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2021_01_01_171714) do
   create_table "answers", force: :cascade do |t|
     t.string "label"
     t.integer "question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "form_answers", force: :cascade do |t|
+    t.integer "user_form_id"
+    t.integer "question_id"
+    t.integer "answer_id"
+    t.string "answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,6 +44,13 @@ ActiveRecord::Schema.define(version: 2021_01_01_171714) do
     t.string "question_type", null: false
     t.string "label", null: false
     t.jsonb "options", default: []
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_forms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "form_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

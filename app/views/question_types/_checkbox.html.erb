@@ -1,0 +1,11 @@
+<div class="flex items-start">
+  <div class="flex items-center h-5">
+    <input type="hidden"   name="user_form[form_answers_attributes][<%= question.id %>][answer]" value="false">
+    <input type="checkbox" name="user_form[form_answers_attributes][<%= question.id %>][answer]" id="question_<%= question.id %>" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+  </div>
+  <div class="ml-3 text-small">
+    <label for="question_<%= question.id %>" class="block text-sm font-medium text-gray-700">
+      <%= question.label %>
+    </label>
+  </div>
+</div>

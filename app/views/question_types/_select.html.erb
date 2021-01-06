@@ -1,0 +1,18 @@
+<div class="w-full">
+  <div class="ml-3 text-small">
+    <label for="question_<%= question.id %>" class="block text-sm font-medium text-gray-700">
+      <%= question.label %>
+    </label>
+  </div>
+
+  <div class="h-5">
+    <select name="user_form[form_answers_attributes][<%= question.id %>][answer_id]" class="mt-1 block w-full py-2 px-3 border border-gray-400 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      <option value=""></option>
+      <% question.answers.each do |answer| %>
+        <option value="<%= answer.id %>">
+          <%= answer.label %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+</div>

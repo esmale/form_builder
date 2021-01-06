@@ -1,0 +1,6 @@
+<div>
+  <label for="question_<%= question.id %>" class="block text-sm font-medium text-gray-700">
+    <%= question.label %>
+  </label>
+  <input id="question_<%= question.id %>" type="text" name="user_form[form_answers_attributes][<%= question.id %>][answer]" class="pl-2 pt-2 pb-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-400 rounded-md">
+</div>

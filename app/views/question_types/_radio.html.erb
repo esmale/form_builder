@@ -1,0 +1,20 @@
+<div>
+  <div class="w-full">
+    <label for="question_<%= question.id %>" class="block text-sm font-medium text-gray-700">
+      <%= question.label %>
+    </label>
+  </div>
+  <% question.answers.each_with_index do |answer, idx| %>
+    <% domID = "question_#{question.id}_answer_#{idx}" %>
+    <div class="answer">
+      <div class="flex items-center h-5">
+        <input id="<%= domID %>" type="radio" name="user_form[form_answers_attributes][<%= question.id %>][answer_id]" value="<%= answer.id %>" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+      </div>
+      <div class="ml-3 text-small">
+        <label for="<%= domID %>" class="block text-sm font-medium text-gray-700">
+          <%= answer.label %>
+        </label>
+      </div>
+    </div>
+  <% end %>
+</div>
