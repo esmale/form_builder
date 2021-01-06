@@ -4,19 +4,21 @@
 %>
 <% questionObject = @question || question %>
 <% id = questionObject.id || Time.now.to_i %>
-<li id="question-<%= id %>" class="ml-4 mt-4">
+<% if questionObject.id.present? %>
+  <input type="hidden" name="form[questions_attributes][<%= id %>][id]" value="<%= questionObject.id %>" />
+  <input id="question-<%= id %>-remove" type="hidden" name="form[questions_attributes][<%= id %>][_destroy]" value="false" />
+<% end %>
+<li id="question-<%= id %>" class="ml-4 mt-4" data-controller="remove">
   <% if questionObject.id.present? %>
     <div class="float-right">
       <%= link_to "edit", edit_admin_question_path(questionObject), class: "mr-4" %>
-      <%= link_to "remove", admin_question_path(questionObject), data: { method: :delete } %>
+      <%= link_to "remove", "#", data: { action: "remove#remove" } %>
     </div>
   <% end %>
 
-  <% if questionObject.id.present? %>
-    <input type="hidden" name="form[questions_attributes][<%= id %>][id]" value="<%= questionObject.id %>" />
-  <% end %>
   <input type="hidden" name="form[questions_attributes][<%= id %>][question_type]" value="<%= questionObject.question_type %>" />
   <input type="hidden" name="form[questions_attributes][<%= id %>][label]" value="<%= questionObject.label %>" />
+
   <% if QuestionType.has_options?(questionObject) %>
     <% questionObject.answers.each_with_index do |answer, index| %>
       <% if answer.id.present? %>

@@ -36,13 +36,13 @@ class Admin::FormsController < ApplicationController
 
   def form_params
     params.require(:form).permit(:name, :published,
-      questions_attributes: [:id, :question_type, :label,
+      questions_attributes: [:id, :question_type, :label, :_destroy,
         answers_attributes: [:id, :label],
       ]
     )
   end
 
   def redirect_if_published
-    redirect_to forms_path, alert: "This form is already published, and cannot be further edited." if @form.published?
+    redirect_to admin_forms_path, alert: "This form is already published, and cannot be further edited." if @form.published?
   end
 end
