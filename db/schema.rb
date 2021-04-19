@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2021_01_06_173008) do
     t.integer "form_id", null: false
     t.string "question_type", null: false
     t.string "label", null: false
-    t.jsonb "options", default: []
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
